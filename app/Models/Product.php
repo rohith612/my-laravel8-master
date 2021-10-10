@@ -40,8 +40,16 @@ class Product extends Model
         return Storage::url(config('config.MAIN_PATH').$this->picture_path);
     }
 
-    public function additionaImages()
-    {
-        return $this->hasMany(ProductsImages::class, 'product_id', 'id');
+    /**
+     * relations here
+     *
+     * @return url
+     */
+    public function additionaImages(){
+        return $this -> hasMany(ProductsImages::class, 'product_id', 'id');
+    }
+
+    public function productCategory(){
+        return $this -> hasOne(Category::class, 'id', 'category');
     }
 }

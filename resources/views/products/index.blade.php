@@ -55,7 +55,7 @@
                                 @foreach ($products as $product)
                                     <tr>
                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                                            {{ $product->id }}
+                                            {{$loop->iteration}}
                                         </td>
                                            <td class="px-6 py-10 whitespace-nowrap text-sm text-gray-900">
                                             {{ $product->product_code }}

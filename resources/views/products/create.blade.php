@@ -43,6 +43,20 @@
                                 <p class="text-sm text-red-600">{{ $message }}</p>
                             @enderror
                         </div>
+
+                        <div class="px-4 py-5 bg-white sm:p-6">
+                            <label for="roles" class="block font-medium text-sm text-gray-700">Category</label>
+                            <select name="category" id="category" class="form-select block rounded-md shadow-sm mt-1 block w-full">
+                                <option value="" selected >SELECT CATEGORY</option>
+                                @foreach($categories as $cats => $id)
+                                    <option value="{{ $id }}">{{ $cats }}</option>
+                                @endforeach
+                            </select>
+                            @error('category')
+                                <p class="text-sm text-red-600">{{ $message }}</p>
+                            @enderror
+                        </div>
+                        
                         <div class="px-4 py-5 bg-white sm:p-6">
                             <label for="picture_path" class="block font-medium text-sm text-gray-700">Image</label>
                             <input type="file" name="picture_path" id="picture_path" class="form-input rounded-md shadow-sm mt-1 block w-full"

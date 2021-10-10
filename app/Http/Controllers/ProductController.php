@@ -4,11 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
-use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use Symfony\Component\HttpFoundation\Response;
 use App\Interfaces\ProductServiceInterface;
+use App\Models\Product;
+use App\Models\Category;
 
 class ProductController extends Controller{
 
@@ -34,7 +35,8 @@ class ProductController extends Controller{
      */
     public function create(){
         abort_if(Gate::denies('product_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-        return view('products.create');
+        $categories = Category::latest()->pluck('id','name');
+        return view('products.create', compact('categories'));
     }
     /**
      * Store a newly created resource in storage.
@@ -64,7 +66,9 @@ class ProductController extends Controller{
      */
     public function edit(Product $product){
         abort_if(Gate::denies('product_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-        return view('products.edit', compact('product'));
+        $categories = Category::latest()->pluck('id','name');
+        $product->load('productCategory');
+        return view('products.edit', compact('product','categories'));
     }
     /**
      * Update the specified resource in storage.

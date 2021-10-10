@@ -40,6 +40,9 @@ class StoreProductRequest extends FormRequest
             'picture_path' => [
                 'required', 
             ],
+            'category' => [
+                'required', 
+            ],
             'additional_imgs.*' => [
                 'nullable','image','mimes:jpeg,jpg,png,gif'
             ],

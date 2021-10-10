@@ -44,10 +44,17 @@
                     </x-jet-nav-link>
                 </div>
                 @endcan
-                 @can('product_access')
+                @can('product_access')
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-jet-nav-link href="{{ route('products.index') }}" :active="request()->routeIs('products.*')">
                         {{ __('Products') }}
+                    </x-jet-nav-link>
+                </div>
+                @endcan
+                @can('category_access')
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-jet-nav-link href="{{ route('categories.index') }}" :active="request()->routeIs('categories.*')">
+                        {{ __('Categories') }}
                     </x-jet-nav-link>
                 </div>
                 @endcan

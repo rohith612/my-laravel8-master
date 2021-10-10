@@ -21,8 +21,8 @@ class ProductService implements ProductServiceInterface{
                 return $query->orWhere('name', 'like', "%". $searchKey. "%")
                         ->orWhere('shipping_code', 'like', "%". $searchKey. "%")
                         ->orWhere('product_code', 'like', "%". $searchKey. "%");
-                })->orderBy('created_at', 'desc')
-                ->paginate(config('config.PAGINATE_COUNT'));
+                })
+                ->latest()->paginate(config('config.PAGINATE_COUNT'));
     }
     /**
      * Insert the product model to db
@@ -34,7 +34,6 @@ class ProductService implements ProductServiceInterface{
         $request['product_code'] = Str::uuid()->toString();
         $request['shipping_code'] = Str::uuid()->toString();
         $request['batch'] = now();
-        $request['category'] = config('config.CONSTANT_ZERO_STATUS');
 
         $product =  Product::create($request);
 

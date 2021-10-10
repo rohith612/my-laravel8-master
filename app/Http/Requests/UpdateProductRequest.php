@@ -37,6 +37,9 @@ class UpdateProductRequest extends FormRequest
             'quantity' => [
                 'required', 'integer'
             ],
+            'category' => [
+                'required', 
+            ],
             'picture_path' => [
                 'nullable','image','mimes:jpeg,jpg,png,gif'
             ],
